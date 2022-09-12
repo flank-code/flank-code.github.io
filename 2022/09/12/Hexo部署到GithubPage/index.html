@@ -89,7 +89,49 @@ replay-btn" aria-hidden="true"></i></a>
     <hr>
   </div>
   <div class="post-content">
-    
+    <h1 id="安装Hexo"><a href="#安装Hexo" class="headerlink" title="安装Hexo"></a>安装Hexo</h1><p><code>npn install -g hexo-cli</code></p>
+<h1 id="初始化hexo"><a href="#初始化hexo" class="headerlink" title="初始化hexo"></a>初始化hexo</h1><p>cd 到博客文件夹<br>执行</p>
+<p><code>hexo init</code></p>
+<p>文件结构：</p>
+<p>.</p>
+<p>├── _config.landscape.yml</p>
+<p>├── _config.yml</p>
+<p>├── db.json</p>
+<p>├── node_modules</p>
+<p>├── package.json</p>
+<p>├── package-lock.json</p>
+<p>├── public</p>
+<p>├── scaffolds</p>
+<p>├── source</p>
+<p>├── themes</p>
+<p>└── yarn.lock</p>
+<h1 id="创建github-io-repo"><a href="#创建github-io-repo" class="headerlink" title="创建github.io repo"></a>创建github.io repo</h1><h1 id="配置SSH-Key"><a href="#配置SSH-Key" class="headerlink" title="配置SSH Key"></a>配置SSH Key</h1><p>创建ssh key</p>
+<p><code>ssh-keygen -t ed25519 -C &quot;your_email@example.com</code></p>
+<p>将提供的电子邮件地址为标签创建SSH密钥</p>
+<h1 id="将SSH密钥添加到-ssh-agent"><a href="#将SSH密钥添加到-ssh-agent" class="headerlink" title="将SSH密钥添加到 ssh-agent"></a>将SSH密钥添加到 ssh-agent</h1><p>1.后台启动ssh代理</p>
+<p><code>eval &quot;$(ssh-agent -s)&quot;</code></p>
+<blockquote>
+<p>Agent pid 59566</p>
+</blockquote>
+<p>2.将 SSH 私钥添加到 ssh-agent（请将命令中的 id_ed25519 替换为私钥文件的名称）</p>
+<p><code>ssh-add ~/.ssh/id_ed25519</code></p>
+<h1 id="在github-setting中添加公钥"><a href="#在github-setting中添加公钥" class="headerlink" title="在github setting中添加公钥"></a>在github setting中添加公钥</h1><p>测试是否配置成功</p>
+<p><code>ssh -T git@github.com</code></p>
+<p>成功显示</p>
+<blockquote>
+<p>Hi username! You’ve successfully authenticated, but GitHub does not<br>provide shell access. </p>
+</blockquote>
+<h1 id="编辑-config-yml"><a href="#编辑-config-yml" class="headerlink" title="编辑 _config.yml"></a>编辑 _config.yml</h1><p>添加<br><code>deploy:</code><br>    <code>type: git</code><br>    <code>repo:github.com:gitrepo地址</code><br>    <code>branch: main</code></p>
+<h1 id="写文章"><a href="#写文章" class="headerlink" title="写文章"></a>写文章</h1><p><code>hexo (不接参数默认layout:post) &quot;标题&quot;</code></p>
+<p>默认放在 &#x2F;source&#x2F;_post 目录下</p>
+<h1 id="更换主题"><a href="#更换主题" class="headerlink" title="更换主题"></a>更换主题</h1><p><code>cd themes/</code></p>
+<p><code>git clone xxxx(你喜欢的主题仓库)</code></p>
+<p><code>vim _config.yml</code><br><code>themes: 主题名</code></p>
+<h1 id="常用命令"><a href="#常用命令" class="headerlink" title="常用命令"></a>常用命令</h1><p><code>hexo clearn</code></p>
+<p><code>hexo generate</code></p>
+<p><code>hexo s</code> (部署到本地测试)</p>
+<p><code>hexo deploy</code> （推送到git仓库）</p>
+
   </div>
   
 </div>
