@@ -1,0 +1,128 @@
+
+
+  <!DOCTYPE html>
+  <html lang="en">
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="renderer" content="webkit">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <meta name="description" content=学习笔记 >
+  <meta name="keywords" content= >
+
+  <head>
+    <title>
+      Redis使用 [ Flank&#39;s Blog ]
+    </title>
+  <meta name="generator" content="Hexo 6.3.0"></head>
+
+  <body>
+
+    <link rel="stylesheet" href="/css/header.css">
+<div class="header">
+  <div class="logo">
+    <span class="pull-left">
+      <a id="site-name" href="/">
+        Flank&#39;s blog
+      </a>
+    </span>
+  </div>
+  <ul class="nav-list">
+    
+      <li>
+        <a href="/">
+          首页
+        </a>
+      </li>
+      
+      <li>
+        <a href="/about">
+          关于
+        </a>
+      </li>
+      
+  </ul>
+</div>
+
+      <!--<link rel="stylesheet" href="/css/top-header.css">
+<div id="top-bar" class="fixed">
+
+  <a class="goto-top" href="#"></a>
+  <ul class="bar-list bar-list-1">
+    
+      <li>
+        <p>
+          <a href="/">
+            <text class="bar-text bar-p1">
+              首页
+            </text>
+            <text class="bar-text bar-p2"></text>
+          </a>
+          <text class="bar-p3">/</text>
+        </p>
+      </li>
+      
+      <li>
+        <p>
+          <a href="/about">
+            <text class="bar-text bar-p1">
+              关于
+            </text>
+            <text class="bar-text bar-p2"></text>
+          </a>
+          <text class="bar-p3">/</text>
+        </p>
+      </li>
+      
+  </ul>
+</div>-->
+
+        <div id="content-outer">
+          <div class="content-inner">
+            <link rel="stylesheet" href="/css/post.css">
+<div class="posts">
+  <a href="/index.html"><i class="fa fa-home
+replay-btn" aria-hidden="true"></i></a>
+  <div class="post-title">
+    <p>
+      Redis使用
+    </p>
+    <hr>
+  </div>
+  <div class="post-content">
+    <h2 id="什么是Redis"><a href="#什么是Redis" class="headerlink" title="什么是Redis?"></a>什么是Redis?</h2><p>key-value 非关系型数据库</p>
+<h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">sudo pacman -S redis</span><br><span class="line"></span><br><span class="line">让redis开机自启</span><br><span class="line">systemctl <span class="built_in">enable</span> redis</span><br><span class="line"></span><br><span class="line">启动redis</span><br><span class="line">systemctl start redis</span><br><span class="line"></span><br><span class="line">开启服务</span><br><span class="line">redis-server</span><br><span class="line"></span><br><span class="line">进入redis</span><br><span class="line">redis-cli</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h2 id="解决存储中文乱码"><a href="#解决存储中文乱码" class="headerlink" title="解决存储中文乱码"></a>解决存储中文乱码</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">redis-cli --raw</span><br></pre></td></tr></table></figure>
+
+<h2 id="获取所有配置项"><a href="#获取所有配置项" class="headerlink" title="获取所有配置项"></a>获取所有配置项</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">CONFIG GET *</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h2 id="基本用法"><a href="#基本用法" class="headerlink" title="基本用法"></a>基本用法</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line">redis 127.0.0.1:6379&gt; SET runoob <span class="string">&quot;菜鸟教程&quot;</span></span><br><span class="line">OK</span><br><span class="line">redis 127.0.0.1:6379&gt; GET runoob</span><br><span class="line"><span class="string">&quot;菜鸟教程&quot;</span></span><br><span class="line"></span><br><span class="line">Hash</span><br><span class="line"></span><br><span class="line">redis 127.0.0.1:6379&gt; HMSET runoob field1 <span class="string">&quot;Hello&quot;</span> field2 <span class="string">&quot;World&quot;</span></span><br><span class="line"><span class="string">&quot;OK&quot;</span></span><br><span class="line">redis 127.0.0.1:6379&gt; HGET runoob field1</span><br><span class="line"><span class="string">&quot;Hello&quot;</span></span><br><span class="line">redis 127.0.0.1:6379&gt; HGET runoob field2</span><br><span class="line"><span class="string">&quot;World&quot;</span></span><br><span class="line"></span><br><span class="line">List</span><br><span class="line">redis 127.0.0.1:6379&gt; DEL runoob</span><br><span class="line">redis 127.0.0.1:6379&gt; lpush runoob redis</span><br><span class="line">(<span class="built_in">integer</span>) 1</span><br><span class="line">redis 127.0.0.1:6379&gt; lpush runoob mongodb</span><br><span class="line">(<span class="built_in">integer</span>) 2</span><br><span class="line">redis 127.0.0.1:6379&gt; lpush runoob rabbitmq</span><br><span class="line">(<span class="built_in">integer</span>) 3</span><br><span class="line">redis 127.0.0.1:6379&gt; lrange runoob 0 10</span><br><span class="line">1) <span class="string">&quot;rabbitmq&quot;</span></span><br><span class="line">2) <span class="string">&quot;mongodb&quot;</span></span><br><span class="line">3) <span class="string">&quot;redis&quot;</span></span><br><span class="line">redis 127.0.0.1:6379&gt;</span><br><span class="line"></span><br><span class="line">Set（集合）</span><br><span class="line">redis 127.0.0.1:6379&gt; sadd runoob redis</span><br><span class="line">redis 127.0.0.1:6379&gt; smembers runoob</span><br><span class="line"></span><br><span class="line">zset(sorted <span class="built_in">set</span>：有序集合)</span><br><span class="line">zadd runoob 0 redis</span><br><span class="line">zrangebyscore runoob 0 1000</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+  </div>
+  
+</div>
+          </div>
+        </div>
+
+        <link rel="stylesheet" href="/css/footer.css">
+<div class="bottom-outer">
+  <div class="copyright">©2021 - 2021 By Tanger</div>
+  <div class="framework-info">
+    <span>Power by</span>
+    <a class="a1" target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a>
+    <span class="footer-separator">|</span>
+    <span>Theme by</span>
+    <a class="a2" target="_blank" rel="noopener" href="https://github.com/redhat123456/hexo-theme-MiHoYo">MiHoYo</a>
+  </div>
+</div>
+
+          
+            <!-- scripts list from theme config.yml -->
+            
+              <script src="/js/MiHoYo.js"></script>
+              
+                
+
+  </body>
+
+  </html>
