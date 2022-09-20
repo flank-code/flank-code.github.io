@@ -11,7 +11,7 @@
 
   <head>
     <title>
-      Archives: 9/2022: 2022 [ Flank&#39;s Blog ]
+      查询4位数回文 [ Flank&#39;s Blog ]
     </title>
   <meta name="generator" content="Hexo 6.3.0"></head>
 
@@ -78,75 +78,43 @@
 
         <div id="content-outer">
           <div class="content-inner">
-            
-
-
-
-
-  <h1>9/2022</h1>
-
-  
-    <div class="archive-item">
-      <a href="/2022/09/20/Java%E5%9F%BA%E7%A1%80/">
-        Java基础
-      </a>
-      <time datetime="2022-09-20T14:48:47.000Z">
-        2022-09-20
-      </time>
-    </div>
-  
-    <div class="archive-item">
-      <a href="/2022/09/20/JVM/">
-        JVM
-      </a>
-      <time datetime="2022-09-20T14:47:14.000Z">
-        2022-09-20
-      </time>
-    </div>
-  
-    <div class="archive-item">
-      <a href="/2022/09/20/%E6%9F%A5%E8%AF%A24%E4%BD%8D%E6%95%B0%E5%9B%9E%E6%96%87/">
-        查询4位数回文
-      </a>
-      <time datetime="2022-09-20T14:20:30.000Z">
-        2022-09-20
-      </time>
-    </div>
-  
-    <div class="archive-item">
-      <a href="/2022/09/15/Redis%E4%BD%BF%E7%94%A8/">
-        Redis使用
-      </a>
-      <time datetime="2022-09-15T02:40:15.000Z">
-        2022-09-15
-      </time>
-    </div>
-  
-    <div class="archive-item">
-      <a href="/2022/09/13/Docker-%E4%BD%BF%E7%94%A8/">
-        Docker 使用
-      </a>
-      <time datetime="2022-09-13T06:06:21.000Z">
-        2022-09-13
-      </time>
-    </div>
-  
-    <div class="archive-item">
-      <a href="/2022/09/12/Hexo%E9%83%A8%E7%BD%B2%E5%88%B0GithubPage/">
-        Hexo部署到GithubPage
-      </a>
-      <time datetime="2022-09-12T04:36:03.000Z">
-        2022-09-12
-      </time>
-    </div>
-  
-
-  <div id="paginator">
-    <span class="page-number current">1</span>
+            <link rel="stylesheet" href="/css/post.css">
+<div class="posts">
+  <a href="/index.html"><i class="fa fa-home
+replay-btn" aria-hidden="true"></i></a>
+  <div class="post-title">
+    <p>
+      查询4位数回文
+    </p>
+    <hr>
   </div>
+  <div class="post-content">
+    <h1 id="itertools-强大的python-迭代器标准库"><a href="#itertools-强大的python-迭代器标准库" class="headerlink" title="itertools 强大的python 迭代器标准库"></a>itertools 强大的python 迭代器标准库</h1><img src="/2022/09/20/%E6%9F%A5%E8%AF%A24%E4%BD%8D%E6%95%B0%E5%9B%9E%E6%96%87/ku.png" class="">
 
 
 
+<pre><code class="python">#获取26个字母的所有四位数回文 .eg:ababa
+import itertools
+#itertools 是一个python迭代器标准库
+
+list = itertools.permutations(&quot;abcdefghijklmnopqrstuvwxyz&quot;,2)
+words = []
+for item in list: #item是列表，需要循环读成字符串
+  word = &quot;&quot;
+  
+  for letter in item:
+    word = word + letter
+    #已经获取到前两位字母排列，只需要拼接后两位内容
+  word = word + word[0] + word[1]+ word[0]
+  print(word)
+  words.append(word)
+</code></pre>
+<h2 id="ENS-聚合市场"><a href="#ENS-聚合市场" class="headerlink" title="ENS 聚合市场"></a>ENS 聚合市场</h2><p><a target="_blank" rel="noopener" href="https://rare.id/">https://rare.id/</a></p>
+<p>学习自Dfarm Mirror文章</p>
+
+  </div>
+  
+</div>
           </div>
         </div>
 

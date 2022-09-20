@@ -1,0 +1,493 @@
+
+
+  <!DOCTYPE html>
+  <html lang="en">
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="renderer" content="webkit">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <meta name="description" content=学习笔记 >
+  <meta name="keywords" content= >
+
+  <head>
+    <title>
+      Java基础 [ Flank&#39;s Blog ]
+    </title>
+  <meta name="generator" content="Hexo 6.3.0"></head>
+
+  <body>
+
+    <link rel="stylesheet" href="/css/header.css">
+<div class="header">
+  <div class="logo">
+    <span class="pull-left">
+      <a id="site-name" href="/">
+        Flank&#39;s blog
+      </a>
+    </span>
+  </div>
+  <ul class="nav-list">
+    
+      <li>
+        <a href="/">
+          首页
+        </a>
+      </li>
+      
+      <li>
+        <a href="/about">
+          关于
+        </a>
+      </li>
+      
+  </ul>
+</div>
+
+      <!--<link rel="stylesheet" href="/css/top-header.css">
+<div id="top-bar" class="fixed">
+
+  <a class="goto-top" href="#"></a>
+  <ul class="bar-list bar-list-1">
+    
+      <li>
+        <p>
+          <a href="/">
+            <text class="bar-text bar-p1">
+              首页
+            </text>
+            <text class="bar-text bar-p2"></text>
+          </a>
+          <text class="bar-p3">/</text>
+        </p>
+      </li>
+      
+      <li>
+        <p>
+          <a href="/about">
+            <text class="bar-text bar-p1">
+              关于
+            </text>
+            <text class="bar-text bar-p2"></text>
+          </a>
+          <text class="bar-p3">/</text>
+        </p>
+      </li>
+      
+  </ul>
+</div>-->
+
+        <div id="content-outer">
+          <div class="content-inner">
+            <link rel="stylesheet" href="/css/post.css">
+<div class="posts">
+  <a href="/index.html"><i class="fa fa-home
+replay-btn" aria-hidden="true"></i></a>
+  <div class="post-title">
+    <p>
+      Java基础
+    </p>
+    <hr>
+  </div>
+  <div class="post-content">
+    <h1 id="Java实现前十个斐波那契数列"><a href="#Java实现前十个斐波那契数列" class="headerlink" title="Java实现前十个斐波那契数列"></a>Java实现前十个斐波那契数列</h1>
+
+
+<p>在java中，void代表的意思是“空”，即“什么都不返回”，在方法申明的时候表示该方法没有返回值。 void对应着一个Void类，Void类是用final修饰的，是一个不可实例化的占位符类。</p>
+<pre><code class="java">
+
+public class f2 &#123;
+    public static void main(String[] args) &#123;
+        for (int counter = 0; counter &lt; 10; counter++)&#123;
+            System.out.printf(&quot;Fibonacci of %d is: %d\n&quot;, counter,fabonacci(counter) );
+        &#125;
+    &#125;
+
+    public static long fabonacci(long number)&#123;
+        if ((number ==0 || number ==1))
+            return number;
+        else
+
+            return (fabonacci(number-1)+ fabonacci(number -2));
+
+    &#125;
+&#125;
+</code></pre>
+<h1 id="判断闰年"><a href="#判断闰年" class="headerlink" title="判断闰年"></a>判断闰年</h1><pre><code class="java">import java.util.Scanner;
+public class f2 &#123;
+    public static void main(String args[]) &#123;
+        Scanner sc = new Scanner(System.in);
+        System.out.println(&quot;输入年份&quot;);
+        int year = sc.nextInt();
+        if (year % 4 ==0) &#123;
+            if(year % 100 !=0) &#123;
+                System.out.println(year+ &quot;是闰年&quot;);
+            &#125;
+            else if (year % 400 ==0) &#123;
+                System.out.println(year + &quot;是闰年&quot;);
+            &#125;
+            else &#123;
+                System.out.println(year+&quot;不是闰年&quot;);
+            &#125;
+        &#125;
+        
+    
+    &#125;
+&#125;
+</code></pre>
+<h1 id="100-1000内的水仙花数"><a href="#100-1000内的水仙花数" class="headerlink" title="100-1000内的水仙花数"></a>100-1000内的水仙花数</h1><pre><code class="java">//水仙花数是指：一个三位数，其各位数字的立方和等于该数本身
+//例如：153就是一个水仙花数。
+//153 = 1*1*1 + 5*5*5 + 3*3*3 = 1 + 125 + 27 = 153
+ 
+public class ShuiXianHuaShu &#123;
+ 
+    public static void main(String[] args) &#123;
+ 
+        int count = 0;
+ 
+        for (int i = 100; i &lt; 1000; i++) &#123;
+            int ge = i % 10;
+            int shi = i / 10 % 10;
+            int bai = i / 100 % 10;
+ 
+            if (i == ge * ge * ge + shi * shi * shi + bai * bai * bai) &#123;
+                System.out.println(i + &quot;是水仙花数&quot;);
+                count++;
+            &#125;
+        &#125;
+        System.out.println(&quot;一共有&quot; + count + &quot;个水仙花数&quot;);
+    &#125;
+ 
+&#125;
+</code></pre>
+<h1 id="冒泡排序（O（n-2））"><a href="#冒泡排序（O（n-2））" class="headerlink" title="冒泡排序（O（n^2））"></a>冒泡排序（O（n^2））</h1><pre><code class="java">import java.util.Arrays;
+
+public class f2 &#123;
+    public static void main(String[] args) &#123;
+        int arr[] = &#123; 2, 8, 7, 9, 4, 1, 5, 0&#125;;
+        bubbleSort(arr);
+    &#125;
+    public static void  bubbleSort(int arr[])&#123;
+        //控制排序多少轮
+        for (int i = 1 ; i&lt; arr.length;i++)&#123;
+            //控制每一轮的次数
+            for (int j =0; j&lt; arr.length -1- i; j++)&#123;
+                if (arr[j] &gt; arr[j + 1])&#123;
+                    int temp;
+                    temp = arr[j];
+                    arr[j] = arr[j+1];
+                    arr[j+1] = temp;
+                &#125;
+            &#125;
+
+        &#125;
+        System.out.println(Arrays.toString(arr));
+    &#125;
+
+&#125;
+</code></pre>
+<h1 id="二叉树的中序遍历-94leetcode-（递归实现）（O（n）树的深度）"><a href="#二叉树的中序遍历-94leetcode-（递归实现）（O（n）树的深度）" class="headerlink" title="二叉树的中序遍历 94leetcode （递归实现）（O（n）树的深度）"></a>二叉树的中序遍历 94leetcode （递归实现）（O（n）树的深度）</h1><pre><code class="java">/**
+ * Definition for a binary tree node.
+ * public class TreeNode &#123;
+ *     int val;
+ *     TreeNode left;
+ *     TreeNode right;
+ *     TreeNode() &#123;&#125;
+ *     TreeNode(int val) &#123; this.val = val; &#125;
+ *     TreeNode(int val, TreeNode left, TreeNode right) &#123;
+ *         this.val = val;
+ *         this.left = left;
+ *         this.right = right;
+ *     &#125;
+ * &#125;
+ */
+class Solution &#123;
+    List&lt;Integer&gt; list = new ArrayList&lt;Integer&gt;();
+    public List&lt;Integer&gt; inorderTraversal(TreeNode root) &#123;
+        if (root == null)&#123;
+            return list;
+        &#125;
+        if(root.left !=null)&#123;
+            inorderTraversal(root.left);
+        &#125;
+        list.add(root.val);
+        if(root.right !=null)&#123;
+            inorderTraversal(root.right);
+        &#125;
+        return list;
+    &#125;
+
+&#125;
+</code></pre>
+<h1 id="二叉树的前序遍历-leetcode589"><a href="#二叉树的前序遍历-leetcode589" class="headerlink" title="二叉树的前序遍历 leetcode589"></a>二叉树的前序遍历 leetcode589</h1><pre><code class="java">/*
+// Definition for a Node.
+class Node &#123;
+    public int val;
+    public List&lt;Node&gt; children;
+
+    public Node() &#123;&#125;
+
+    public Node(int _val) &#123;
+        val = _val;
+    &#125;
+
+    public Node(int _val, List&lt;Node&gt; _children) &#123;
+        val = _val;
+        children = _children;
+    &#125;
+&#125;;
+*/
+
+class Solution &#123;
+    List&lt;Integer&gt; res = new LinkedList&lt;&gt;();
+    public List&lt;Integer&gt; preorder(Node root) &#123;
+        traverse(root);
+        return res;
+    &#125;
+    
+    void traverse(Node root)&#123;
+        if(root == null)&#123;
+            return;
+        &#125;
+        res.add(root.val);
+        for (Node child: root.children) &#123;
+            traverse(child);
+        &#125;
+
+    &#125;
+&#125;
+</code></pre>
+<h1 id="二叉树后序遍历-回溯算法"><a href="#二叉树后序遍历-回溯算法" class="headerlink" title="二叉树后序遍历 (回溯算法)"></a>二叉树后序遍历 (回溯算法)</h1><pre><code class="java">/**
+ * Definition for a binary tree node.
+ * public class TreeNode &#123;
+ *     int val;
+ *     TreeNode left;
+ *     TreeNode right;
+ *     TreeNode() &#123;&#125;
+ *     TreeNode(int val) &#123; this.val = val; &#125;
+ *     TreeNode(int val, TreeNode left, TreeNode right) &#123;
+ *         this.val = val;
+ *         this.left = left;
+ *         this.right = right;
+ *     &#125;
+ * &#125;
+ */
+class Solution &#123;
+    List&lt;Integer&gt; res = new ArrayList&lt;Integer&gt;();
+    public List&lt;Integer&gt; postorderTraversal(TreeNode root) &#123;
+      tranverse(root);
+      return res;
+    &#125;
+    //二叉树遍历函数
+    void tranverse(TreeNode root)&#123;
+        if (root == null) &#123;
+            return;
+        &#125;
+        tranverse(root.left);
+        tranverse(root.right);
+        res.add(root.val);
+    &#125;
+&#125;
+</code></pre>
+<h1 id="Java-Swing-登录界面"><a href="#Java-Swing-登录界面" class="headerlink" title="Java Swing 登录界面"></a>Java Swing 登录界面</h1><pre><code class="Java">import javax.swing.*;
+public class f2 &#123;
+
+    public static void main(String[] args) &#123;
+        // 创建 JFrame 实例
+        JFrame frame = new JFrame(&quot;Login Example&quot;);
+        // Setting the width and height of frame
+        frame.setSize(350, 200);
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
+        /* 创建面板，这个类似于 HTML 的 div 标签
+         * 我们可以创建多个面板并在 JFrame 中指定位置
+         * 面板中我们可以添加文本字段，按钮及其他组件。
+         */
+        JPanel panel = new JPanel();
+        // 添加面板
+        frame.add(panel);
+        /*
+         * 调用用户定义的方法并添加组件到面板
+         */
+        placeComponents(panel);
+
+        // 设置界面可见
+        frame.setVisible(true);
+    &#125;
+
+    private static void placeComponents(JPanel panel) &#123;
+
+        /* 布局部分我们这边不多做介绍
+         * 这边设置布局为 null
+         */
+        panel.setLayout(null);
+
+        // 创建 JLabel
+        JLabel userLabel = new JLabel(&quot;User:&quot;);
+        /* 这个方法定义了组件的位置。
+         * setBounds(x, y, width, height)
+         * x 和 y 指定左上角的新位置，由 width 和 height 指定新的大小。
+         */
+        userLabel.setBounds(10,20,80,25);
+        panel.add(userLabel);
+
+        /*
+         * 创建文本域用于用户输入
+         */
+        JTextField userText = new JTextField(20);
+        userText.setBounds(100,20,165,25);
+        panel.add(userText);
+
+        // 输入密码的文本域
+        JLabel passwordLabel = new JLabel(&quot;Password:&quot;);
+        passwordLabel.setBounds(10,50,80,25);
+        panel.add(passwordLabel);
+
+        /*
+         *这个类似用于输入的文本域
+         * 但是输入的信息会以点号代替，用于包含密码的安全性
+         */
+        JPasswordField passwordText = new JPasswordField(20);
+        passwordText.setBounds(100,50,165,25);
+        panel.add(passwordText);
+
+        // 创建登录按钮
+        JButton loginButton = new JButton(&quot;Login&quot;);
+        loginButton.setBounds(10, 80, 80, 25);
+        panel.add(loginButton);
+    &#125;
+
+&#125;
+</code></pre>
+<h1 id="Java-Stack类"><a href="#Java-Stack类" class="headerlink" title="Java Stack类"></a>Java Stack类</h1><pre><code class="Java">定义的方法：
+booleanEempty():判断堆栈是否为空
+ObjectPeak():查看栈顶的对象，但不移除
+ObjectPop():移除栈顶的对象，并作为此函数的值返回该对象
+ObjetPush(Object element):将项压入堆栈顶部
+int search(Object element):返回对象在堆栈中的位置，以1为基数
+</code></pre>
+<pre><code class="java">public class f2 &#123;
+    private  int maxSize;
+    private  long[] stackArray;
+    private int top;
+
+    public f2(int s)&#123;
+        maxSize = s;
+        stackArray = new long[maxSize];
+        top = -1;
+    &#125;
+    public  void  push(long j)&#123;
+        stackArray[++top] = j;
+    &#125;
+    public long pop()&#123;
+        return stackArray[top--];
+    &#125;
+    public long peek()&#123;
+        return stackArray[top];
+    &#125;
+    public  boolean isEmpty() &#123;
+        return (top == -1);
+    &#125;
+
+    public  boolean isFull() &#123;
+        return (top == maxSize -1);
+    &#125;
+
+    public static void main(String[] args) &#123;
+        f2 theStack = new f2(10);
+        theStack.push(10);
+        theStack.push(25);
+        theStack.push(16);
+        theStack.push(192);
+        theStack.push(105);
+
+        while (!theStack.isEmpty())&#123;
+            long value = theStack.pop();
+            System.out.print(value);
+            System.out.print(&quot; &quot;);
+        &#125;
+     
+    &#125;
+
+&#125;
+</code></pre>
+<pre><code class="Java">import java.util.*;
+
+public class f2 &#123;
+    static void showpush(Stack stack1, int a) &#123;
+        stack1.push(new Integer(a));
+        System.out.println(&quot;Push(&quot;+a+&quot;)&quot;);
+        System.out.println(&quot;Stack:&quot; +stack1);
+    &#125;
+    static void  showpop(Stack stack1) &#123;
+        Integer a = (Integer) stack1.pop();
+        System.out.println(a);
+        System.out.println(&quot;Stack: &quot; +stack1);
+    &#125;
+
+    public static void main(String[] args) &#123;
+        Stack stack1 = new Stack();
+        System.out.println(&quot;Stack:&quot; + stack1);
+        showpush(stack1, 40);
+        showpush(stack1,50);
+        showpush(stack1,60);
+        showpop(stack1);
+        showpop(stack1);
+        showpop(stack1);
+        try &#123;
+            showpop(stack1);
+
+        &#125;catch (Exception e)&#123;
+            System.out.println(&quot;It is Empty Stack&quot;);
+
+        &#125;
+    &#125;
+
+
+&#125;
+</code></pre>
+<h1 id="输出："><a href="#输出：" class="headerlink" title="输出："></a>输出：</h1><pre><code>Stack:[]
+Push(40)
+Stack:[40]
+Push(50)
+Stack:[40, 50]
+Push(60)
+Stack:[40, 50, 60]
+60
+Stack: [40, 50]
+50
+Stack: [40]
+40
+Stack: []
+It is Empty Stack
+
+Process finished with exit code 0
+</code></pre>
+
+  </div>
+  
+</div>
+          </div>
+        </div>
+
+        <link rel="stylesheet" href="/css/footer.css">
+<div class="bottom-outer">
+  <div class="copyright">©2021 - 2021 By Tanger</div>
+  <div class="framework-info">
+    <span>Power by</span>
+    <a class="a1" target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a>
+    <span class="footer-separator">|</span>
+    <span>Theme by</span>
+    <a class="a2" target="_blank" rel="noopener" href="https://github.com/redhat123456/hexo-theme-MiHoYo">MiHoYo</a>
+  </div>
+</div>
+
+          
+            <!-- scripts list from theme config.yml -->
+            
+              <script src="/js/MiHoYo.js"></script>
+              
+                
+
+  </body>
+
+  </html>

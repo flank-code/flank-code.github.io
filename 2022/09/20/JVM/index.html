@@ -1,0 +1,148 @@
+
+
+  <!DOCTYPE html>
+  <html lang="en">
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="renderer" content="webkit">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <meta name="description" content=学习笔记 >
+  <meta name="keywords" content= >
+
+  <head>
+    <title>
+      JVM [ Flank&#39;s Blog ]
+    </title>
+  <meta name="generator" content="Hexo 6.3.0"></head>
+
+  <body>
+
+    <link rel="stylesheet" href="/css/header.css">
+<div class="header">
+  <div class="logo">
+    <span class="pull-left">
+      <a id="site-name" href="/">
+        Flank&#39;s blog
+      </a>
+    </span>
+  </div>
+  <ul class="nav-list">
+    
+      <li>
+        <a href="/">
+          首页
+        </a>
+      </li>
+      
+      <li>
+        <a href="/about">
+          关于
+        </a>
+      </li>
+      
+  </ul>
+</div>
+
+      <!--<link rel="stylesheet" href="/css/top-header.css">
+<div id="top-bar" class="fixed">
+
+  <a class="goto-top" href="#"></a>
+  <ul class="bar-list bar-list-1">
+    
+      <li>
+        <p>
+          <a href="/">
+            <text class="bar-text bar-p1">
+              首页
+            </text>
+            <text class="bar-text bar-p2"></text>
+          </a>
+          <text class="bar-p3">/</text>
+        </p>
+      </li>
+      
+      <li>
+        <p>
+          <a href="/about">
+            <text class="bar-text bar-p1">
+              关于
+            </text>
+            <text class="bar-text bar-p2"></text>
+          </a>
+          <text class="bar-p3">/</text>
+        </p>
+      </li>
+      
+  </ul>
+</div>-->
+
+        <div id="content-outer">
+          <div class="content-inner">
+            <link rel="stylesheet" href="/css/post.css">
+<div class="posts">
+  <a href="/index.html"><i class="fa fa-home
+replay-btn" aria-hidden="true"></i></a>
+  <div class="post-title">
+    <p>
+      JVM
+    </p>
+    <hr>
+  </div>
+  <div class="post-content">
+    <p>线程私有的，生命周期与线程相同</p>
+<h2 id="java虚拟机栈"><a href="#java虚拟机栈" class="headerlink" title="java虚拟机栈"></a>java虚拟机栈</h2><p>方法被创建时会创建一个栈帧，用于存储局部变量表，操作数栈，动态链接</p>
+<p>局部变量表存放各种基本数据类型</p>
+<h2 id="本地方法栈"><a href="#本地方法栈" class="headerlink" title="本地方法栈"></a>本地方法栈</h2><p>本地虚拟栈为native方法服务，java虚拟机为虚拟机所执行的java方法服务</p>
+<h2 id="java堆区"><a href="#java堆区" class="headerlink" title="java堆区"></a>java堆区</h2><p>java堆在JVM启动时被创建，时jvm内存管理中最大的内存区域</p>
+<p>通过-Xms 和-Xmx参数设置</p>
+<p>-Xms:JVM启动时申请的最小内存，</p>
+<p>-Xmx:JVM启动时申请的最大内存</p>
+<h2 id="堆区的分配图"><a href="#堆区的分配图" class="headerlink" title="堆区的分配图"></a>堆区的分配图</h2><p>Java堆：新生代+老年代</p>
+<p>新生&#x3D;Eden + S0 + S1</p>
+<p>新生代与老年代的比例：1：2</p>
+<h2 id="方法区"><a href="#方法区" class="headerlink" title="方法区"></a>方法区</h2><p>存储JVM加载的类信息，常量，静态变量，是各个线程共享的内存区域</p>
+<p>编译器编译后的代码缓存数据</p>
+<h2 id="对象的内存布局图"><a href="#对象的内存布局图" class="headerlink" title="对象的内存布局图"></a>对象的内存布局图</h2><p>堆内存：包括对象头，实例数据，补齐填充</p>
+<h1 id="Java-Monitor-的工作原理"><a href="#Java-Monitor-的工作原理" class="headerlink" title="Java Monitor 的工作原理"></a>Java Monitor 的工作原理</h1><p>java线程的同步底层原理是监视锁</p>
+<h1 id="创建一个对象内存分配流程图"><a href="#创建一个对象内存分配流程图" class="headerlink" title="创建一个对象内存分配流程图"></a>创建一个对象内存分配流程图</h1><p>Eden区生成对象</p>
+<p>如果Eden区被填满，触发YoungGC,没有被引用的对象直接清除</p>
+<p>依然存活的对象被送到Survivor区</p>
+<p>如果被送到Survivor区的对象大于Survivor区的上限，对象直接进入老年代</p>
+<p>判断对象是否存活：可达性分析算法</p>
+<h1 id="标记-清除算法"><a href="#标记-清除算法" class="headerlink" title="标记-清除算法"></a>标记-清除算法</h1><p>标记清除算法是最基本的垃圾回收算法</p>
+<p>算法分为两个阶段：标记，清除</p>
+<p>首先标记出需要回收的对象，标记完成后，统一回收被标记的对象</p>
+<p>缺点：执行效率不稳定和内存空间的碎片化问题</p>
+<h1 id="类的生命周期："><a href="#类的生命周期：" class="headerlink" title="类的生命周期："></a>类的生命周期：</h1><p>一个类被加载到jvm内存开始，到卸载内存，完整的生命周期（7个阶段）：加载，验证，准备，解析，初始化，使用，卸载</p>
+<p><strong>加载</strong>：通过类的全限定名获取此类的二进制字符流，将这个字节流所代表的静态存储结构转化为方法区的运行时数据结构，在内存中生成这个类的java.lang.Class对象，作为方法区这个类的各种数据的访问入口</p>
+<p>验证：确保Class文件的字节流中包含的信息满足约束要求，</p>
+<p>验证阶段包括：文件格式校验，</p>
+
+  </div>
+  
+</div>
+          </div>
+        </div>
+
+        <link rel="stylesheet" href="/css/footer.css">
+<div class="bottom-outer">
+  <div class="copyright">©2021 - 2021 By Tanger</div>
+  <div class="framework-info">
+    <span>Power by</span>
+    <a class="a1" target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a>
+    <span class="footer-separator">|</span>
+    <span>Theme by</span>
+    <a class="a2" target="_blank" rel="noopener" href="https://github.com/redhat123456/hexo-theme-MiHoYo">MiHoYo</a>
+  </div>
+</div>
+
+          
+            <!-- scripts list from theme config.yml -->
+            
+              <script src="/js/MiHoYo.js"></script>
+              
+                
+
+  </body>
+
+  </html>

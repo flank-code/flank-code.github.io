@@ -96,7 +96,49 @@ replay-btn" aria-hidden="true"></i></a>
 <p><code>on denied</code></p>
 <p><code>errors pretty printing info</code></p>
 <h2 id="解决"><a href="#解决" class="headerlink" title="解决"></a>解决</h2><p><code>sudo chmod 666 /var/run/docker.sock</code></p>
-<h2 id="用法"><a href="#用法" class="headerlink" title="用法"></a>用法</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line">拉取镜像</span><br><span class="line">docker pull mysql</span><br><span class="line">查看镜像</span><br><span class="line">docker images</span><br><span class="line">列出容器</span><br><span class="line">docker ps</span><br><span class="line">运行容器</span><br><span class="line">	docker run -d(指定后台运行) -p(指定端口) 80（要指定的端口）：80 --name mynginx nginx(接镜像名)</span><br><span class="line">进入容器</span><br><span class="line">-it (阻塞运行)</span><br><span class="line">docker <span class="built_in">exec</span> -it c5(容器<span class="built_in">id</span>) bash</span><br><span class="line">修改nginx页面</span><br><span class="line"><span class="built_in">cd</span> /etc/share/nginx/html</span><br><span class="line"><span class="built_in">echo</span> hello &gt; index.html</span><br><span class="line">退出docker</span><br><span class="line"><span class="built_in">exit</span></span><br><span class="line">提交容器</span><br><span class="line">docker commit c5 m</span><br><span class="line">sha256:fafbfa13e31fcad1b1f3ba6f844cb106f1f20a8809dc9c8632c44969ebc87b68</span><br><span class="line">╰─➤  docker images</span><br><span class="line">REPOSITORY   TAG       IMAGE ID       CREATED         SIZE</span><br><span class="line">m            latest    fafbfa13e31f   9 seconds ago   142MB</span><br><span class="line">mysql        latest    ff3b5098b416   11 days ago     447MB</span><br><span class="line">nginx        latest    2b7d6430f78d   2 weeks ago     142MB</span><br><span class="line">删除容器</span><br><span class="line">docker <span class="built_in">rm</span> -f (容器<span class="built_in">id</span>)</span><br><span class="line">DockerFile</span><br><span class="line">在/DockerFile/ 目录下</span><br><span class="line">vim Dockerfile</span><br><span class="line">FROM nginx</span><br><span class="line">ADD ./ /usr/share/nginx/hml/</span><br><span class="line"></span><br><span class="line">vim index.html</span><br><span class="line">wai bu wen jian</span><br><span class="line">构建镜像</span><br><span class="line">docker build -t m2(镜像名) .</span><br><span class="line">运行镜像</span><br><span class="line">docker run -d -p100:80 m2</span><br><span class="line">保存文件</span><br><span class="line">docker save m2&gt;1.tar</span><br><span class="line">加载镜像</span><br><span class="line">docker load &lt; 1.tar</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h2 id="用法"><a href="#用法" class="headerlink" title="用法"></a>用法</h2><pre><code class="bash">拉取镜像
+docker pull mysql
+查看镜像
+docker images
+列出容器
+docker ps
+运行容器
+    docker run -d(指定后台运行) -p(指定端口) 80（要指定的端口）：80 --name mynginx nginx(接镜像名)
+进入容器
+-it (阻塞运行)
+docker exec -it c5(容器id) bash
+修改nginx页面
+cd /etc/share/nginx/html
+echo hello &gt; index.html
+退出docker
+exit
+提交容器
+docker commit c5 m
+sha256:fafbfa13e31fcad1b1f3ba6f844cb106f1f20a8809dc9c8632c44969ebc87b68
+╰─➤  docker images
+REPOSITORY   TAG       IMAGE ID       CREATED         SIZE
+m            latest    fafbfa13e31f   9 seconds ago   142MB
+mysql        latest    ff3b5098b416   11 days ago     447MB
+nginx        latest    2b7d6430f78d   2 weeks ago     142MB
+删除容器
+docker rm -f (容器id)
+DockerFile
+在/DockerFile/ 目录下
+vim Dockerfile
+FROM nginx
+ADD ./ /usr/share/nginx/hml/
+
+vim index.html
+wai bu wen jian
+构建镜像
+docker build -t m2(镜像名) .
+运行镜像
+docker run -d -p100:80 m2
+保存文件
+docker save m2&gt;1.tar
+加载镜像
+docker load &lt; 1.tar
+</code></pre>
 
   </div>
   
